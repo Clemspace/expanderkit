@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "expanderkit"
+version = "0.2.0"
+description = "Expander-graph sparse masks for neural network construction, with the residual symmetry measured rather than assumed"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Clement Castellon" }]
+keywords = ["sparse", "expander", "ramanujan", "biregular", "weight-space", "gauge"]
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+]
+
+# The core is numpy-only on purpose: mask construction, spectra and automorphism
+# certification are testable in any environment, including CI without a GPU.
+dependencies = ["numpy>=1.24"]
+
+[project.optional-dependencies]
+torch = ["torch>=2.0"]
+exact = ["pynauty>=2.8"]   # exact |Aut(G)|; the certificate works without it
+dev = ["ruff>=0.4"]
+
+[project.urls]
+Repository = "https://github.com/Clemspace/expanderkit"
+
+[tool.setuptools.packages.find]
+include = ["ramanujan*", "expanderkit*"]
+
+[tool.ruff]
+line-length = 96
+target-version = "py310"

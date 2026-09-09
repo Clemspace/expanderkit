@@ -34,4 +34,5 @@ _token_cache/
 # local
 .DS_Store
 .env
-*.log
+*.log*.tar.gz
+*.tar.gz
